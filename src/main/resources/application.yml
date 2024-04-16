@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: api-covid19
+
+
+  token:
+    header:
+      ninja-api: fN3J9qNcKgds/6cZAfp2lg==GnXLeJ4csLkVLs9G
+
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5434/planisa
+    username: postgres
+    password: 1234
+    # JPA properties
+    jpa:
+      hibernate:
+        ddl-auto: create # When you launch the application for the first time - switch "none" at "create"
+      show-sql: true
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      open-in-view: false
+      generate-ddl: true
+
+      flyway:
+        enabled: true
+        locations:
+          classpath: db.migration
+        baseline-on-migrate: true
+
+
+server:
+  port: 8080

@@ -63,7 +63,7 @@ public class CountryServiceImpl implements CountryService {
 
         Optional<Country> countryOpt = countryRepository.findByNameContainingIgnoreCase(name);
 
-        Long countryId = null;
+        Long countryId;
 
         CovidCasesRequest[] covidCasesRequests = gson.getGeson().fromJson(returnResponseApi, CovidCasesRequest[].class);
 
@@ -73,7 +73,7 @@ public class CountryServiceImpl implements CountryService {
                 countryId = countryOpt.get().getId();
 
                 for (Map.Entry<String, InfoRequest> casesEntry : covidCasesRequests[0].getCases().entrySet()) {
-                    InfoRequest infoRequest = casesEntry.getValue();
+
                     Case cases = new Case();
                     cases.setDate(casesEntry.getKey());
                     cases.setTotal(casesEntry.getValue().getTotal());
@@ -89,7 +89,7 @@ public class CountryServiceImpl implements CountryService {
                 countryId = country.getId();
 
                 for (Map.Entry<String, InfoRequest> casesEntry : covidCasesRequests[0].getCases().entrySet()) {
-                    InfoRequest infoRequest = casesEntry.getValue();
+
                     Case cases = new Case();
                     cases.setDate(casesEntry.getKey());
                     cases.setTotal(casesEntry.getValue().getTotal());
@@ -115,7 +115,7 @@ public class CountryServiceImpl implements CountryService {
 
         Optional<Country> countryOpt = countryRepository.findByNameContainingIgnoreCase(name);
 
-        Long countryId = null;
+        Long countryId;
 
         try {
             if (countryOpt.isPresent()) {
@@ -123,7 +123,7 @@ public class CountryServiceImpl implements CountryService {
                 countryId = countryOpt.get().getId();
 
                 for (Map.Entry<String, InfoRequest> deathsEntry : covidDeathsRequest[0].deaths().entrySet()) {
-                    InfoRequest infoRequest = deathsEntry.getValue();
+
                     Death death = new Death();
                     death.setDate(deathsEntry.getKey());
                     death.setTotal(deathsEntry.getValue().getTotal());
@@ -139,7 +139,7 @@ public class CountryServiceImpl implements CountryService {
                 countryId = country.getId();
 
                 for (Map.Entry<String, InfoRequest> deathsEntry : covidDeathsRequest[0].deaths().entrySet()) {
-                    InfoRequest infoRequest = deathsEntry.getValue();
+
                     Death death = new Death();
                     death.setDate(deathsEntry.getKey());
                     death.setTotal(deathsEntry.getValue().getTotal());
@@ -166,14 +166,4 @@ public class CountryServiceImpl implements CountryService {
         }
     }
 
-
-// arrumar o retorno do id
-//    private Long findCountryId(String name) {
-//        Optional<Country> countryOpt = countryRepository.findByNameContainingIgnoreCase(name);
-//
-//        if (countryOpt.isPresent()) {
-//            return countryOpt.get().getId();
-//        }
-//        throw new CountryException("id country bad request");
-//    }
 }

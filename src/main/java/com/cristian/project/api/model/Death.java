@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "deaths")

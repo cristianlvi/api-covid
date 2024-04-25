@@ -14,5 +14,4 @@ public interface ApiNinjaClient {
     @GetMapping("?type=deaths&country={name}")
     String searchCasesDeathsCountry(@RequestParam(name = "name") String name, @RequestHeader("x-api-key") String token);
 
-// type = cases ou deaths
 }

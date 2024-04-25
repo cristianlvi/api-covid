@@ -1,26 +1,23 @@
 package com.cristian.project.api.controller;
 
 import com.cristian.project.api.dto.CovidCasesRequest;
-import com.cristian.project.api.exceptions.custom.CountryException;
 import com.cristian.project.api.exceptions.custom.GenericException;
-import com.cristian.project.api.model.Country;
 import com.cristian.project.api.service.CountryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("v1/api/covid19")
 public class CountryController {
 
 
-    @Autowired
     private CountryService countryService;
 
+    public CountryController(CountryService countryService) {
+        this.countryService = countryService;
+    }
 
     @GetMapping("/search")
     public ResponseEntity<CovidCasesRequest> searchCountry(@RequestParam("country") String name) throws GenericException {
